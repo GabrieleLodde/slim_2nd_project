@@ -1,0 +1,13 @@
+<body style='background-color:blue;'>
+<h1 style='text-align:center;color:white'>Elenco alunni</h1>
+<ul>
+{{#getArray}}
+    <li>
+    <h3 style="color:white;">Nome: <b>{{getNome}}</b></h3>
+    <h3 style="color:lightgreen;">Cognome: <b>{{getCognome}}</b></h3>
+    <h3 style="color:yellow;">Età: <b>{{getEta}}</b></h3>
+    </li>
+    <br><br>
+{{/getArray}}
+</ul>
+</body>
