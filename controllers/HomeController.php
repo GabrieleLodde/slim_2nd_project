@@ -2,20 +2,17 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-include __DIR__ .'/../views/Home.php';
-require_once ("./Classe.php");
-
-class HomeController{
+class HomeController extends AbstractController{
 
     /**
      * Metodo per l'accesso alla home page
      * @method GET
      */
 
-    function home(Request $request, Response $response, $args){
+    function index(Request $request, Response $response, $args){
 
         $classe = new Classe();
-        $view = new Home();
+        $view = new MainPage();
         $view->setData($classe);
 
         $response->getBody()->write($view->render());

@@ -1,5 +1,5 @@
 <?php
-require_once ("Alunno.php");
+
 class Classe{
     protected $arrayAlunni = [];
 
@@ -24,6 +24,17 @@ class Classe{
     
     public function getArray(){
         return $this->arrayAlunni;
+    }
+
+    public function findByName($name){
+        $alunno = null;
+        foreach($this->arrayAlunni as $alunno_array){
+            if(strtolower($alunno_array->getNome()) == strtolower($name)){
+                $alunno = $alunno_array;
+            }
+
+        }
+        return $alunno;
     }
 
 }
