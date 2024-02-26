@@ -3,7 +3,7 @@
 <ul>
 {{#getArray}}
     <li>
-    <h3 style="color:white;">Nome: <b>{{getNome}}</b></h3>
+    <h3 style="color:lightblue;">Nome: <b>{{getNome}}</b></h3>
     <h3 style="color:lightgreen;">Cognome: <b>{{getCognome}}</b></h3>
     <h3 style="color:yellow;">Età: <b>{{getEta}}</b></h3>
     </li>

@@ -42,4 +42,19 @@ class AlunniController extends AbstractController{
         $response->getBody()->write($mainPage->render());
         return $response;
     }
+
+    function json_alunni(Request $request, Response $response, $args){
+        $classe = new Classe();
+        $response->getBody()->write(json_encode($classe));
+        return $response->withHeader("Content-type", "application/json")->withStatus(200);
+    }
+
+    function json_findByName(Request $request, Response $response, $args){
+        $params = isset($_GET['nome'])?$_GET:null;
+        $nome = isset($args['nome'])?$args['nome']:$params['nome'];
+        $classe = new Classe();
+        $data['Alunno'] = $classe->findByName($nome);
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader("Content-type", "application/json")->withStatus(200);
+    }
 }

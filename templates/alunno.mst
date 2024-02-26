@@ -1,10 +1,9 @@
-
 {{#Alunno}}
     <div style='background-color:blue;height:100vh;'>
         <h1 style='color:yellow;text-align:center;'>Alunno presente</h1>
         <br><br>
         <div style='margin:auto;text-align:center;'>
-            <h3 style="color:white;">Nome: <b>{{getNome}}</b></h3>
+            <h3 style="color:lightblue;">Nome: <b>{{getNome}}</b></h3>
             <h3 style="color:lightgreen;">Cognome: <b>{{getCognome}}</b></h3>
             <h3 style="color:yellow;">Età: <b>{{getEta}}</b></h3>
         </div>

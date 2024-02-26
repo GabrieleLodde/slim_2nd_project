@@ -60,7 +60,7 @@
                     {{{.}}}
                     {{/body}}
                     {{^body}}
-                        <h1>ciao</h1>
+                        <h1>CONTENT DEFAULT</h1>
                     {{/body}}
                 </div>
             </div>
