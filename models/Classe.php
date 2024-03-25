@@ -12,14 +12,15 @@ class Classe implements JsonSerializable{
         $A6 = new Alunno("Cristiano", "Viola", 22);
         $A7 = new Alunno("Matteo", "Marroni", 23);
         $A8 = new Alunno("Pietro", "Neri", 24);
-        array_push($this->arrayAlunni, $A1);
-        array_push($this->arrayAlunni, $A2);
-        array_push($this->arrayAlunni, $A3);
-        array_push($this->arrayAlunni, $A4);
-        array_push($this->arrayAlunni, $A5);
-        array_push($this->arrayAlunni, $A6);
-        array_push($this->arrayAlunni, $A7);
-        array_push($this->arrayAlunni, $A8);
+
+        $this->addAlunno($A1);
+        $this->addAlunno($A2);
+        $this->addAlunno($A3);
+        $this->addAlunno($A4);
+        $this->addAlunno($A5);
+        $this->addAlunno($A6);
+        $this->addAlunno($A7);
+        $this->addAlunno($A8);
     }
     
     public function getArray(){
@@ -44,6 +45,28 @@ class Classe implements JsonSerializable{
             $attrs[$name]=$this->{$name};
         }
         return $attrs;
+    }
+
+    public function addAlunno($alunno){
+        array_push($this->arrayAlunni, $alunno);
+    }
+
+    public function modifyAlunno($alunno_passed, $id){
+        if(!isset($this->arrayAlunni[$id])){
+            return null;
+        }
+        $this->arrayAlunni[$id]->setNome($alunno_passed->getNome());
+        $this->arrayAlunni[$id]->setCognome($alunno_passed->getCognome());
+        $this->arrayAlunni[$id]->setEta($alunno_passed->getEta());
+        return $this->arrayAlunni[$id];
+    }
+
+    public function deleteAlunno($id){
+        if(isset($this->arrayAlunni[$id])){
+            unset($this->$arrayAlunni[$id]);
+            return $this->arrayAlunni;
+        }
+        return false;
     }
 }
 

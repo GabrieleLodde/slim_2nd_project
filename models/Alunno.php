@@ -27,11 +27,11 @@ class Alunno implements JsonSerializable {
     }
     
     public function setCognome($cognome){
-        $this->nome = $cognome;
+        $this->cognome = $cognome;
     }
 
     public function setEta($eta){
-        $this->nome = $eta;
+        $this->eta = $eta;
     }
 
     //Per serializzare gli attributi della classe in un array

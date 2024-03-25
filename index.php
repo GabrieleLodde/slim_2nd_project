@@ -19,9 +19,20 @@ function autoload($className){
 spl_autoload_register("autoload");
 
 $app = AppFactory::create();
+
+$app->addBodyParsingMiddleware();
+$app->addRoutingMiddleware();
+//$app->addErrorMiddleware(true, true, true);
+
 $app->get('/', 'HomeController:index');
 $app->get('/alunni', 'AlunniController:index');
 $app->get('/alunni/search[/{nome}]', 'AlunniController:findByName');
 $app->get('/json/alunni', 'AlunniController:json_alunni');
 $app->get('/json/alunni/{nome}', 'AlunniController:json_findByName');
+
+$app->post('/alunni', 'AlunniController:methodPost');
+$app->put('/alunni/{id}', 'AlunniController:methodPut');
+$app->delete('/alunni/{id}', 'AlunniController:methodDelete');
+
+
 $app->run();
