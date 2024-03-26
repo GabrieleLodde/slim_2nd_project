@@ -63,8 +63,8 @@ class Classe implements JsonSerializable{
 
     public function deleteAlunno($id){
         if(isset($this->arrayAlunni[$id])){
-            unset($this->$arrayAlunni[$id]);
-            return $this->arrayAlunni;
+            unset($this->arrayAlunni[$id]);
+            return true;
         }
         return false;
     }

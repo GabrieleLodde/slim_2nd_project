@@ -45,7 +45,7 @@ class AlunniController extends AbstractController{
 
     function json_alunni(Request $request, Response $response, $args){
         $classe = new Classe();
-        $response->getBody()->write(json_encode($classe));
+        $response->getBody()->write(json_encode($classe->getArray()));
         return $response->withHeader("Content-type", "application/json")->withStatus(200);
     }
 
@@ -61,6 +61,7 @@ class AlunniController extends AbstractController{
 
     function methodPost(Request $request, Response $response, $args){
         $post_data = json_decode($request->getBody()->getContents(), true);
+        //var_dump($post_data);
         $classe = new Classe();
         $alunno = new Alunno($post_data["nome"], $post_data["cognome"], $post_data["eta"]);
         $classe->addAlunno($alunno);
@@ -74,26 +75,25 @@ class AlunniController extends AbstractController{
         $alunno = new Alunno($put_data["nome"], $put_data["cognome"], $put_data["eta"]);
         $alunno_modificato = $classe->modifyAlunno($alunno, $args["id"]);
         if(!is_null($alunno_modificato)){
-            $response->getBody()->write(json_encode($classe));
+            $response->getBody()->write(json_encode($classe->getArray()));
             return $response->withHeader("Content-type", "application/json")->withStatus(201);
         }
         else{
-            $response->getBody()->write(json_encode('"Modifica":"False"'));
+            $response->getBody()->write(json_encode(["Modifica" => "False"]));
             return $response->withHeader("Content-type", "application/json")->withStatus(404);
         }
     }
 
     function methodDelete(Request $request, Response $response, $args){
-        $delete_data = json_decode($request->getBody()->getContents(), true);
         $classe = new Classe();
-        $array_eliminato = $classe->deleteAlunno($args["id"]);
-        if(!$array_eliminato){
-            $response->getBody()->write(json_encode('"Cancellazione":"False"'));
-            return $response->withHeader("Content-type", "application/json")->withStatus(404);
+        $eliminato = $classe->deleteAlunno($args["id"]);
+        if($eliminato){
+            $response->getBody()->write(json_encode($classe));
+            return $response->withHeader("Content-type", "application/json")->withStatus(202);
         }
         else{
-            $response->getBody()->write(json_encode($array_eliminato));
-            return $response->withHeader("Content-type", "application/json")->withStatus(201);
+            $response->getBody()->write(json_encode(["Cancellazione" => "False"]));
+            return $response->withHeader("Content-type", "application/json")->withStatus(404);
         }
     }
 }
